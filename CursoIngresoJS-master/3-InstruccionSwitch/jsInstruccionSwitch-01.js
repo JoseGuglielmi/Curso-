@@ -7,7 +7,7 @@ function mostrar() {
     switch (mes) {
         case "Enero":
             {
-                alert("que comiences bien el año!!!.");
+                alert("que. comiences bien el año!!!.");
             }
             break;
         case "Marzo":
