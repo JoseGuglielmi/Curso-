@@ -3,16 +3,22 @@ function mostrar()
 	//declaro variables
   let tipo;
   let precioBolsa;
-  let descuento = 0;
-  let precioFinal = 0;
+  let descuento=0;
+  let precioTotal;
+
+  let precioTotalConDescuento;
 
   let respuesta="s";
 
   let cantidadDeBolsas = 0;
 
-  let flogTipoMasUnidades;
+  let flogTipoMasBolsas=1;
+  let tipoMasBolsa;
   let tipoMasCantidadBolsas;
+
+  let flogTipoMasCaro=1;
   let tipoMasCaro;
+  let tipoPrecioMasCaro;
 	//termino de declarar variables
 
 	//pido todos lo datos y los valido
@@ -22,7 +28,7 @@ function mostrar()
 
 		while(tipo != "arena" && tipo != "cal" && tipo != "cemento") 
 		{
-			tipo = prompt("Error Ringrese producto: jabon / barbijo / alcohol ");
+			tipo = prompt("Error Reingrese producto: arena / cal / camento  ");
 		}
 
 		precioBolsa = parseInt(prompt("ingrese precio"));
@@ -38,51 +44,48 @@ function mostrar()
 		{
 			cantidadDeBolsas = parseInt(prompt("Error, Reingrese cantidad de bolsas que no sea mayor a 0"));
 		}
+
+		if(respuesta=="s")
+		{
+		respuesta=prompt("quieres ingresar mas?");
+		}
 		//dejo de pedir datos
 
 		//datos para el usuario
-    
-
-
-    if(cantidadDeBolsas >=10 && cantidadDeBolsas <= 30)
-    {
-      descuento = 15;
-    }else if(cantidadDeBolsas >= 30)
-    {
-      descuento = 25;
-    }
-
-    if(respuesta=="s")
-    {
-      respuesta=prompt("quieres ingresar mas?");
-    }
-	/*if(flogTipoMasUnidades == 0)
-		{
-			flogTipoMasUnidades =1;
-			tipoMasUnidades = tipo;
-			cantidadMasUnidades = cantidad;
-
-		}else if(cantidadMasUnidades < cantidad)
-		{
-			tipoMasUnidades = tipo;
-			cantidadMasUnidades = cantidad;
-		}
-	}
-
-	if(cantidadAlcoholes >= cantidadBarbijos && cantidadAlcoholes > cantidadJabones)
+	if(cantidadDeBolsas>=10 && cantidadDeBolsas<30)
 	{
-		promedioDeCompra = cantidadAlcoholes / contadorAlcohol;
-	}else if(cantidadBarbijos > cantidadAlcoholes && cantidadBarbijos > cantidadJabones)
-	{	
-		promedioDeCompra = cantidadBarbijos / contadorBarbijos;
-	}else {
-		promedioDeCompra = cantidadJabones / contadorJabones;
+		descuento=15;
+	}else if(cantidadDeBolsas>=30)
+	{
+		descuento=25;
 	}
+	
+	precioTotal=cantidadDeBolsas*precioBolsa;
+	precioTotalConDescuento=(precioTotal*descuento)/100;
+	precioTotalConDescuento=precioTotal-precioTotalConDescuento;
 
-	document.write("alchol con el precio mas bajo "+precioAlcoholesMinimo+"<br>");
-	document.write("cantidad de alcoholes "+cantidadAlcoholesMin+"<br>");
-	document.write("fabricante de alcoholes "+fabricanteMin+"<br>");
-	document.write("tipo con mas unidades es "+tipoMasUnidades+" con la cantidad de "+cantidadMasUnidades+" y el promedio de compra es "+promedioDeCompra+"<br>");
-	document.write("cantidad de jabon es de "+cantidadJabones);*/
+	if(flogTipoMasBolsas==1){
+		flogTipoMasBolsas=0;
+		tipoMasBolsa=tipo;
+		tipoMasCantidadBolsas=cantidadDeBolsas;
+	}else if(tipoMasCantidadBolsas<cantidadDeBolsas){
+		tipoMasBolsa=tipo;
+		tipoMasCantidadBolsas=cantidadDeBolsas;
+	}
+	if(flogTipoMasCaro==1){
+		flogTipoMasCaro=0;
+		tipoMasCaro=tipo;
+		tipoPrecioMasCaro=precioBolsa;
+
+	}else if(tipoPrecioMasCaro<precioBolsa){
+		tipoMasCaro=tipo;
+		tipoPrecioMasCaro=precioBolsa;
+	}
   }
+  document.write("el precio sin descuento es "+precioTotal+"<br>");
+  if(descuento!=0){
+	document.write("el descuento es de "+ precioTotalConDescuento+"<br>");
+  } 
+  document.write("el tipo con mas cantidad de bolsas es "+tipoMasBolsa+" con la cantidad de "+tipoMasCantidadBolsas+"<br>");
+  document.write("el tipo mas caro es "+tipoMasCaro+" con el precio de "+tipoPrecioMasCaro)
 }
